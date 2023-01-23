@@ -14,7 +14,7 @@ predictiondicts = {1 : "Unacceptable", 2 : "Acceptable",3 : "Good", 4 : "Very Go
 def BMI(height, weight):
     return round((weight / height**2),2)
 
-@app.route('/', methods = ['POST', 'GET'])
+@app.route('/regression', methods = ['POST', 'GET'])
 def index():
     if request.method == 'POST':
         age = float(request.form['age'])
@@ -36,7 +36,8 @@ def index():
     else:   
         return render_template('home.html')
 
-@app.route('/predict', methods = ['POST', 'GET'])
+@app.route('/', methods = ['POST', 'GET'])
+@app.route('/classification', methods = ['POST', 'GET'])
 def prediction():
 
     if request.method == 'POST':
