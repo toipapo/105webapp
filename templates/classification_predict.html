@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class = "container">
+    <h1 style = "font-size: 40px">Data Input for Classification Prediction Model</h1>
+</div>
+
+<div class = "container">
+    <div class = "col-md-6">
+        <div class = "card mt-30">
+            <div class = "card-body">
+                <form class = "form" action= "{{url_for('prediction')}}" method = "POST">
+                    <label for = "buying">Buying Price</label><br>
+                    <input class="form-check-input" type="radio" name="buying" value = "4" required>
+                    <label class="form-check-label ms-2" for = "vhigh">Very High</label>
+                    <input class="form-check-input" type="radio" name="buying" value = "3" required>
+                    <label class="form-check-label ms-2" for = "high">High</label>
+                    <input class="form-check-input" type="radio" name="buying" value = "2" required>
+                    <label class="form-check-label ms-2" for = "med">Medium</label>
+                    <input class="form-check-input" type="radio" name="buying" value = "1" required>
+                    <label class="form-check-label ms-2" for = "low">Low</label>
+                    <br><br>
+
+                    <label for = "buying">Maintenance</label><br>
+                    <input class="form-check-input" type="radio" name="maint" value = "4" required>
+                    <label class="form-check-label ms-2" for = "vhigh">Very High</label>
+                    <input class="form-check-input" type="radio" name="maint" value = "3" required>
+                    <label class="form-check-label ms-2" for = "high">High</label>
+                    <input class="form-check-input" type="radio" name="maint" value = "2" required>
+                    <label class="form-check-label ms-2" for = "med">Medium</label>
+                    <input class="form-check-input" type="radio" name="maint" value = "1" required>
+                    <label class="form-check-label ms-2" for = "low">Low</label>
+                    <br><br>
+
+                    <label for = "buying">No. of Doors</label><br>
+                    <input class="form-check-input" type="radio" name="doors" value = "2" required>
+                    <label class="form-check-label ms-2" for = "2">2 Doors</label>
+                    <input class="form-check-input" type="radio" name="doors" value = "3" required>
+                    <label class="form-check-label ms-2" for = "3">3 Doors</label>
+                    <input class="form-check-input" type="radio" name="doors" value = "4" required>
+                    <label class="form-check-label ms-2" for = "4">4 Doors</label>
+                    <input class="form-check-input" type="radio" name="doors" value = "5" required>
+                    <label class="form-check-label ms-2" for = "5more">5 Doors or more</label>
+                    <br><br>
+
+                    <label for = "buying">No. of Persons able to fit inside</label><br>
+                    <input class="form-check-input" type="radio" name="persons" value = "2" required>
+                    <label class="form-check-label ms-2" for = "2">2 persons</label>
+                    <input class="form-check-input" type="radio" name="persons" value = "4" required>
+                    <label class="form-check-label ms-2" for = "4">4 persons</label>
+                    <input class="form-check-input" type="radio" name="persons" value = "6" required>
+                    <label class="form-check-label ms-2" for = "more">More than 4 persons</label>
+                    <br><br>
+
+                    <label for = "buying">Size of Luggage Boot(Trunk)</label><br>
+                    <input class="form-check-input" type="radio" name="lug_boot" value = "1" required>
+                    <label class="form-check-label ms-2" for = "small">Small</label>
+                    <input class="form-check-input" type="radio" name="lug_boot" value = "2" required>
+                    <label class="form-check-label ms-2" for = "med">Medium</label>
+                    <input class="form-check-input" type="radio" name="lug_boot" value = "3" required>
+                    <label class="form-check-label ms-2" for = "big">Large</label>
+                    <br><br>
+
+                    <label for = "buying">Level of Safety</label><br>
+                    <input class="form-check-input" type="radio" name="safety" value = "1" required>
+                    <label class="form-check-label ms-2" for = "low">Low</label>
+                    <input class="form-check-input" type="radio" name="safety" value = "2" required>
+                    <label class="form-check-label ms-2" for = "med">Medium</label>
+                    <input class="form-check-input" type="radio" name="safety" value = "3" required>
+                    <label class="form-check-label ms-2" for = "high">High</label>
+                    <br><br>
+
+                    <input type = "submit" class = "btn btn-primary btn-block btn-lg" value = "Predict">
+
+                    {% if data %}
+                    <div>The predicted class of the car is {{data}}</div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

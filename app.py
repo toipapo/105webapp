@@ -7,6 +7,10 @@ app = Flask(__name__)
 model_regression = 'ml model/regression_model.aiml'
 loaded_model_regression = joblib.load(model_regression)
 
+model_classification = 'ml model/classification_model.aiml'
+loaded_model_classification = joblib.load(model_classification)
+predictiondicts = {1 : "Unacceptable", 2 : "Acceptable",3 : "Good", 4 : "Very Good"}
+
 def BMI(height, weight):
     return round((weight / height**2),2)
 
@@ -32,22 +36,26 @@ def index():
     else:   
         return render_template('home.html')
 
-# @app.route('/predict', methods = ['POST'])
-# def prediction():
+@app.route('/predict', methods = ['POST', 'GET'])
+def prediction():
 
-#     if request.method == 'POST':
-#         age = float(request.form['age'])
-#         sex = float(request.form['sex'])
-#         bmi = float(request.form['bmi'])
-#         children = float(request.form['children'])
-#         smoker = float(request.form['smoker'])
+    if request.method == 'POST':
+        buying = float(request.form['buying'])
+        maint = float(request.form['maint'])
+        doors = float(request.form['doors'])
+        persons = float(request.form['persons'])
+        lug_boot = float(request.form['lug_boot'])
+        safety = float(request.form['safety'])
 
-#         values = [[age, sex, bmi, children, smoker]]
-#         prediction = loaded_model_regression.predict(values)
+        values = [[buying, maint, doors, persons, lug_boot, safety]]
+        prediction_class = loaded_model_classification.predict(values)
+        prediction_class = predictiondicts[prediction_class[0]]
 
-#         prediction_cost = math.ceil(prediction * 100) / 100
 
-#         return redirect(render_template, data = prediction_cost)
+        return render_template('classification_predict.html', data = prediction_class)
+    
+    else:   
+        return render_template('classification_predict.html')
 
 if __name__ == "__main__":
     app.run(debug = True)
