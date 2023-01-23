@@ -2,32 +2,39 @@
 
 {% block content %}
 
-<div class = "container">
+<!-- <div class = "container">
     <h1 style = "font-size: 40px">Data Input for Prediction Model</h1>
-</div>
+</div> -->
 
-<div class = "container">
+<nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand" href="#">Regression</a>
+    <a class="navbar-brand" href="#">Classification</a>
+</nav>
+
+<div class = "container-sm">
+    <h1 class='title' style = "font-size: 40px">Medical Insurance Cost Prediction</h1>
     <div class = "col-md-6">
         <div class = "card mt-30">
             <div class = "card-body">
                 <form class = "form" action= "{{url_for('index')}}" method = "POST">
                     <label for = "age">Age</label>
-                    <input type = "number" name = "age" id = "age" class = "form-control"><br>
+                    <input type = "number" name = "age" id = "age" class = "form-control" required><br>
 
                     <label for = "sex">Sex</label><br>
                     <input class="form-check-input" type="radio" name="sex" value = "0" required>
                     <label class="form-check-label ms-2" for = "male">Male</label>
                     <input class="form-check-input" type="radio" name="sex" value = "1" required>
                     <label class="form-check-label ms-2" for = "female">Female</label><br>
+                    <br>
 
                     <label for = "height">Height</label>
-                    <input type = "text" name = "height" id = "height" class = "form-control" placeholder = "Height should be in cm"><br>
+                    <input type = "text" name = "height" id = "height" class = "form-control" placeholder = "Height should be in cm" required><br>
 
                     <label for = "weight">Weight</label>
-                    <input type = "text" name = "weight" id = "weight" class = "form-control" placeholder = "Weight should be in kg"><br>
+                    <input type = "text" name = "weight" id = "weight" class = "form-control" placeholder = "Weight should be in kg" required><br>
 
                     <label for = "children">No. of Children</label>
-                    <input type = "number" name = "children" id = "children" class = "form-control"><br>
+                    <input type = "number" name = "children" id = "children" class = "form-control" required><br>
                     
                     <label for = "smoker">Are you a Smoker?</label><br>
                     <input class="form-check-input" type="radio" name="smoker" value = "1" required>
@@ -36,10 +43,14 @@
                     <label class="form-check-label ms-2" for = "no">No</label>
                     <br><br>
 
-                    <input type = "submit" class = "btn btn-primary btn-block btn-lg" value = "Predict">
+                    <div class="cent-div">
+                        <input type = "submit" class = "btn btn-primary btn-block btn-lg align" value = "Predict">
+                       
+                    </div>
+                    <br><br>
 
                     {% if data %}
-                    <div>The predicted medical costs for you is ${{data}}</div>
+                    <div class="pred-style">The predicted medical costs for you is ${{data}}</div>
                     {% endif %}
                 </form>
             </div>
